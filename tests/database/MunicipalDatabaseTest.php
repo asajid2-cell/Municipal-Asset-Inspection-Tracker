@@ -24,7 +24,7 @@ final class MunicipalDatabaseTest extends CIUnitTestCase
 
         $this->assertSame(6, $assetCount);
         $this->seeNumRecords(4, 'departments', []);
-        $this->seeNumRecords(6, 'asset_categories', []);
+        $this->seeNumRecords(7, 'asset_categories', []);
         $this->seeInDatabase('assets', [
             'asset_code' => 'FAC-HVAC-003',
             'status'     => 'Needs Inspection',

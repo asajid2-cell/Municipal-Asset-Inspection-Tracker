@@ -21,6 +21,25 @@ use Psr\Log\LoggerInterface;
 abstract class BaseController extends Controller
 {
     /**
+     * Helpers shared across the server-rendered application.
+     *
+     * @var list<string>
+     */
+    protected $helpers = ['form', 'url'];
+
+    /**
+     * Session service shared across authenticated controllers.
+     */
+    protected $session;
+
+    /**
+     * Currently authenticated user payload stored in session.
+     *
+     * @var array<string, mixed>|null
+     */
+    protected ?array $currentUser = null;
+
+    /**
      * Be sure to declare properties for any property fetch you initialized.
      * The creation of dynamic property is deprecated in PHP 8.2.
      */
@@ -32,14 +51,56 @@ abstract class BaseController extends Controller
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        // Load here all helpers you want to be available in your controllers that extend BaseController.
-        // Caution: Do not put the this below the parent::initController() call below.
-        // $this->helpers = ['form', 'url'];
-
-        // Caution: Do not edit this line.
         parent::initController($request, $response, $logger);
 
-        // Preload any models, libraries, etc, here.
-        // $this->session = service('session');
+        $this->session = service('session');
+        $user = $this->session->get('auth_user');
+        $this->currentUser = is_array($user) ? $user : null;
+    }
+
+    /**
+     * Returns the authenticated user array when a session is active.
+     *
+     * @return array<string, mixed>|null
+     */
+    protected function currentUser(): ?array
+    {
+        return $this->currentUser;
+    }
+
+    /**
+     * Returns the logged-in user ID for audit logging.
+     */
+    protected function currentUserId(): ?int
+    {
+        if ($this->currentUser === null) {
+            return null;
+        }
+
+        return (int) $this->currentUser['id'];
+    }
+
+    /**
+     * Returns the logged-in user role for access checks in controllers.
+     */
+    protected function currentUserRole(): ?string
+    {
+        if ($this->currentUser === null) {
+            return null;
+        }
+
+        return (string) $this->currentUser['role'];
+    }
+
+    /**
+     * Returns the current tenant/organization ID.
+     */
+    protected function currentOrganizationId(): int
+    {
+        if ($this->currentUser === null) {
+            return 1;
+        }
+
+        return (int) ($this->currentUser['organization_id'] ?? 1);
     }
 }

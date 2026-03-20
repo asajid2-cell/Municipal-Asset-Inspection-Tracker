@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
 
         $rows = [
             [
+                'organization_id' => 1,
                 'department_id' => $this->departmentId('FACILITIES'),
                 'full_name' => 'Alex Morgan',
                 'email' => 'admin@northriver.local',
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
                 'updated_at' => $timestamp,
             ],
             [
+                'organization_id' => 1,
                 'department_id' => $this->departmentId('PARKS'),
                 'full_name' => 'Jamie Patel',
                 'email' => 'ops@northriver.local',
@@ -37,6 +39,7 @@ class UserSeeder extends Seeder
                 'updated_at' => $timestamp,
             ],
             [
+                'organization_id' => 1,
                 'department_id' => $this->departmentId('ROADS'),
                 'full_name' => 'Riley Chen',
                 'email' => 'inspector@northriver.local',
@@ -47,11 +50,34 @@ class UserSeeder extends Seeder
                 'updated_at' => $timestamp,
             ],
             [
+                'organization_id' => 1,
                 'department_id' => $this->departmentId('FACILITIES'),
                 'full_name' => 'Taylor Brooks',
                 'email' => 'manager@northriver.local',
                 'password_hash' => $passwordHash,
                 'role' => 'department_manager',
+                'is_active' => true,
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ],
+            [
+                'organization_id' => 1,
+                'department_id' => $this->departmentId('LIBRARY'),
+                'full_name' => 'Casey Nguyen',
+                'email' => 'viewer@northriver.local',
+                'password_hash' => $passwordHash,
+                'role' => 'viewer',
+                'is_active' => true,
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ],
+            [
+                'organization_id' => 1,
+                'department_id' => $this->departmentId('ROADS'),
+                'full_name' => 'Morgan Diaz',
+                'email' => 'fieldtech@northriver.local',
+                'password_hash' => $passwordHash,
+                'role' => 'inspector',
                 'is_active' => true,
                 'created_at' => $timestamp,
                 'updated_at' => $timestamp,

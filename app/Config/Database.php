@@ -25,7 +25,9 @@ class Database extends Config
      * @var array<string, mixed>
      */
     public array $default = [
-        'database'    => ROOTPATH . 'writable/database/dev.sqlite',
+        'database'    => ENVIRONMENT === 'testing'
+            ? ROOTPATH . 'writable/database/test.sqlite'
+            : ROOTPATH . 'writable/database/dev.sqlite',
         'DBDriver'    => 'SQLite3',
         'DBPrefix'    => '',
         'DBDebug'     => true,
@@ -183,12 +185,5 @@ class Database extends Config
     public function __construct()
     {
         parent::__construct();
-
-        // Ensure that we always set the database group to 'tests' if
-        // we are currently running an automated test suite, so that
-        // we don't overwrite live data on accident.
-        if (ENVIRONMENT === 'testing') {
-            $this->defaultGroup = 'tests';
-        }
     }
 }

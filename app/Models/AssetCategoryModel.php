@@ -9,6 +9,7 @@ use CodeIgniter\Model;
  */
 class AssetCategoryModel extends Model
 {
+    protected $DBGroup = 'default';
     protected $table = 'asset_categories';
     protected $primaryKey = 'id';
     protected $returnType = 'array';

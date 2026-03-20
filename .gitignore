@@ -63,6 +63,12 @@ writable/uploads/*
 writable/debugbar/*
 !writable/debugbar/index.html
 
+writable/exports/*
+!writable/exports/index.html
+
+writable/database/*
+!writable/database/index.html
+
 php_errors.log
 
 #-------------------------
@@ -87,7 +93,6 @@ phpunit
 vendor/
 tools/
 .ci4_bootstrap/
-writable/database/*.sqlite
 BACKLOG.md
 IMPLEMENTATION_WAVES.md
 INTEGRATIONS_AND_REALISM.md

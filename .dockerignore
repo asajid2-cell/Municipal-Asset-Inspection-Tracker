@@ -1,0 +1,11 @@
+.git
+vendor
+node_modules
+build
+tests/_output
+writable/cache/*
+writable/logs/*
+writable/session/*
+writable/uploads/*
+writable/database/*.sqlite
+!writable/database/.gitkeep

@@ -2,6 +2,9 @@
 
 namespace Config;
 
+use App\Filters\AuthFilter;
+use App\Filters\ApiAuthFilter;
+use App\Filters\RoleFilter;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
@@ -34,6 +37,9 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'auth'          => AuthFilter::class,
+        'api-auth'      => ApiAuthFilter::class,
+        'role'          => RoleFilter::class,
     ];
 
     /**

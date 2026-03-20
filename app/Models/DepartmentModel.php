@@ -9,6 +9,7 @@ use CodeIgniter\Model;
  */
 class DepartmentModel extends Model
 {
+    protected $DBGroup = 'default';
     protected $table = 'departments';
     protected $primaryKey = 'id';
     protected $returnType = 'array';

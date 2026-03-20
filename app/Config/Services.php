@@ -19,14 +19,17 @@ use CodeIgniter\Config\BaseService;
  */
 class Services extends BaseService
 {
-    /*
-     * public static function example($getShared = true)
-     * {
-     *     if ($getShared) {
-     *         return static::getSharedInstance('example');
-     *     }
+    /**
+     * Returns the shared open-data sync service used by the UI and CLI.
      *
-     *     return new \CodeIgniter\Example();
-     * }
+     * @param callable|null $fetcher Optional HTTP fetcher used by tests.
      */
+    public static function openDataSyncService(?callable $fetcher = null, bool $getShared = true): \App\Libraries\OpenDataSyncService
+    {
+        if ($getShared) {
+            return static::getSharedInstance('openDataSyncService', $fetcher);
+        }
+
+        return new \App\Libraries\OpenDataSyncService($fetcher);
+    }
 }
